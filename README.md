@@ -1,3 +1,56 @@
+# SENG 401 Project: Group 16. Repo #2: FastJson
+***
+### Members: Steve Khanna, Abid Al Labib, David Macababayao, Ragya Mittal, Cobe Reinbold, Long Tran
+***
+## System description
+FastJSON is a library to convert instances of Java Objects into their equivalent JSON representation and vice versa. The library takes into account inheritance when performing any conversions so that the final result is well formatted Java/JSON
+
+## Design Patterns
+Implementing two new design patterns for this software system was not an easy task, since the system code is already well written. We noticed that the code base uses lots of design patterns (mostly singleton) in conjuction with each other implying that specific design choices were made during its evolution. However, we have found a couple of sections that we could implement design patterns on.
+
+Our previous experience with the first repository allowed us to easily indentify areas where we could implement design patterns learned in class.
+
+The 2 design patterns we implemented are the **Singleton** and the **Bridge pattern**.
+***
+## 1. Singleton Pattern (Worked on by Steve Khanna, Long Tran, and Ragya Mittal)
+The Singleton pattern allows for classes to only be instantiated once and that object is the only instance of the class used on all of the class' application. Furthermore, there should only be one class creating the instance of this object.
+
+### What prompted us to choose this:
+#### Context:
+When sifting through the code, we noticed that many Deserialization classes had static variables called instance. This meant that the instance was created at execution and persisted throughout the lifetime of the program. Given that only one instance existed at any given time this was a perfect candidate for the Singleton pattern. A helpful confirmation of this was provided to us by our first repository which also had deserializers implemented using the singleton pattern. Given that both deserializers worked in essentially the same way, we could use the singleton pattern to refactor the code base.
+
+#### Details:
+We saw that the code has the singleton method implemented on a lot of classes but their implementation is quite different from the implementation taught in lectures. The original singleton implementation did not have a condition which created a new instance of the object if the current static variable was null. We added this extra if statement to make the code more readable and closer to how singletons were implemented in class. We recognize that the architecture of the system remains unchanged by this refactoring; however, we wanted better code legibility as the current architecture of the system was already well thought out.
+
+### Implementation and Refactoring
+
+#### Classes Changed
+* **MapDeserializer**
+    * Updated the code to make the singleton implementation more legible.
+***
+## 2. Bridge Pattern (Worked on by Steve Khanna)
+The Bridge pattern allows to decouple an abstraction from its implementation so two can be changed easily.
+
+### What prompted us to choose this:
+#### Context:
+During execution, fastJSON uses a lot of utilities to correctly convert a data type to it's equivalent Java/JSON representation. For example, if a Java object contained a value that is greater than the value of the Maximum Integer in the standard Java library, converting the instance into it's equivalent JSON by just reading the values in the register would yield an incorrect result. These utilities allow fastJSON to correctly identify these data types and return the correct result. Given that this is such a tedious, and algorithm intensive task; we decided to use the Bridge Pattern to decouple the algorithm from the function. This was done for two main reasons: 1. The final code would be a lot easier to read and would follow better convention as the functions won't be ~400 lines long; and 2. To allow developers to update the code and add additional support for related classes (for example: RyuBigInteger or RyuBigDecimal) which would follow the same algorithm as RyuDouble.
+
+#### Details:
+The RyuDouble class contains a method toString() that would convert a given double into its string equivalent. The toString() method does its conversion in multiple different steps that uses algorithms. We decided that some of these steps could be decoupled from the method. This would make the process independent from the method so that new algorithms could be easily integrated into the process. This also brings modularity into the code, in which other classes could also use the same algorithms on similar processes.
+
+### Implementation and Refactoring
+
+#### Classes Added
+* **RyuDoubleAlgorithm**
+    * Contains the steps that were decoupled from the class method (used in RyuDouble).
+* **BridgeStruct**
+    * Contains the data structure needed by the processes in the toString() method.
+
+#### Classes Changed
+* **RyuDouble**
+    * Modularized the method toString()'s steps/processes
+
+***
 
 # fastjson
 
