@@ -179,7 +179,7 @@ public class ParserConfigBug569 extends ParserConfig {
         } else if (Collection.class.isAssignableFrom(clazz)) {
             deserializer = CollectionCodec.instance;
         } else if (Map.class.isAssignableFrom(clazz)) {
-            deserializer = MapDeserializer.instance;
+            deserializer = MapDeserializer.getInstance();
         } else if (Throwable.class.isAssignableFrom(clazz)) {
             deserializer = new ThrowableDeserializer(this, clazz);
         } else {

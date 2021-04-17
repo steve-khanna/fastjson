@@ -407,15 +407,15 @@ public class ParserConfig {
         deserializers.put(Calendar.class, CalendarCodec.instance);
         deserializers.put(XMLGregorianCalendar.class, CalendarCodec.instance);
 
-        deserializers.put(JSONObject.class, MapDeserializer.instance);
+        deserializers.put(JSONObject.class, MapDeserializer.getInstance());
         deserializers.put(JSONArray.class, CollectionCodec.instance);
 
-        deserializers.put(Map.class, MapDeserializer.instance);
-        deserializers.put(HashMap.class, MapDeserializer.instance);
-        deserializers.put(LinkedHashMap.class, MapDeserializer.instance);
-        deserializers.put(TreeMap.class, MapDeserializer.instance);
-        deserializers.put(ConcurrentMap.class, MapDeserializer.instance);
-        deserializers.put(ConcurrentHashMap.class, MapDeserializer.instance);
+        deserializers.put(Map.class, MapDeserializer.getInstance());
+        deserializers.put(HashMap.class, MapDeserializer.getInstance());
+        deserializers.put(LinkedHashMap.class, MapDeserializer.getInstance());
+        deserializers.put(TreeMap.class, MapDeserializer.getInstance());
+        deserializers.put(ConcurrentMap.class, MapDeserializer.getInstance());
+        deserializers.put(ConcurrentHashMap.class, MapDeserializer.getInstance());
 
         deserializers.put(Collection.class, CollectionCodec.instance);
         deserializers.put(List.class, CollectionCodec.instance);
@@ -877,7 +877,7 @@ public class ParserConfig {
         } else if (Collection.class.isAssignableFrom(clazz)) {
             deserializer = CollectionCodec.instance;
         } else if (Map.class.isAssignableFrom(clazz)) {
-            deserializer = MapDeserializer.instance;
+            deserializer = MapDeserializer.getInstance();
         } else if (Throwable.class.isAssignableFrom(clazz)) {
             deserializer = new ThrowableDeserializer(this, clazz);
         } else if (PropertyProcessable.class.isAssignableFrom(clazz)) {
