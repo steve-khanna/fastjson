@@ -1,6 +1,6 @@
 package com.alibaba.fastjson.util;
 
-public class RyuBigInt implements BridgePattern{
+public class RyuBigIntAlgorithm implements BridgePattern{
 
     //Boiler Plate code; Needs to be changed when actually implementing the algorithm
 

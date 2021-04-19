@@ -1,7 +1,6 @@
 package com.alibaba.fastjson.util;
 
-public class RyuDoubleAlgorithm implements BridgePattern{
-
+public class RyuDoubleAlgorithm implements BridgePattern  {
     private static final int[][] POW5_SPLIT = new int[326][4];
     private static final int[][] POW5_INV_SPLIT = new int[291][4];
     public BridgeStruct step3(int e2, long mv, long mp, long mm, boolean even, int mmShift){
