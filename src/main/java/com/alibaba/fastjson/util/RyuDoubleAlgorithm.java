@@ -1,6 +1,6 @@
 package com.alibaba.fastjson.util;
 
-public class RyuDoubleAlgorithm extends BrigePattern{
+public class RyuDoubleAlgorithm{
 
     private static final int[][] POW5_SPLIT = new int[326][4];
     private static final int[][] POW5_INV_SPLIT = new int[291][4];
