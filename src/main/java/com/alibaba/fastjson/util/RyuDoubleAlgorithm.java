@@ -1,10 +1,10 @@
 package com.alibaba.fastjson.util;
 
-public class RyuDoubleAlgorithm{
+public class RyuDoubleAlgorithm implements BridgePattern{
 
     private static final int[][] POW5_SPLIT = new int[326][4];
     private static final int[][] POW5_INV_SPLIT = new int[291][4];
-    public static BridgeStruct step3(int e2, long mv, long mp, long mm, boolean even, int mmShift){
+    public BridgeStruct step3(int e2, long mv, long mp, long mm, boolean even, int mmShift){
         final long LOG10_5_NUMERATOR = 6989700L; // (long) (10000000L * Math.log10(5));
         final long LOG10_2_NUMERATOR = 3010299L; // (long) (10000000L * Math.log10(2));
         // Step 3: Convert to a decimal power base using 128-bit arithmetic.
@@ -247,7 +247,7 @@ public class RyuDoubleAlgorithm{
         return new BridgeStruct(dp, e10, even, dmIsTrailingZeros, dvIsTrailingZeros, dm, dv);
     }
 
-    public static BridgeStruct step4(BridgeStruct step3Struct){
+    public BridgeStruct step4(BridgeStruct step3Struct){
 
         long dp = step3Struct.getDp();
         int e10 = step3Struct.getE10();
@@ -372,7 +372,7 @@ public class RyuDoubleAlgorithm{
     }
 
 
-    public static int step5(BridgeStruct step4struct, boolean sign, char[] result, int index ,int off){
+    public int step5(BridgeStruct step4struct, boolean sign, char[] result, int index ,int off){
         int olength = step4struct.getOlength();
         long output = step4struct.getOutput();
         boolean scientificNotation = step4struct.isScientificNotation();

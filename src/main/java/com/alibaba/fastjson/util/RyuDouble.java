@@ -21,7 +21,7 @@ import java.math.BigInteger;
 /**
  * An implementation of Ryu for double.
  */
-public final class RyuDouble {
+public final class RyuDouble extends RyuBridgeAPI{
     private static final int[][] POW5_SPLIT = new int[326][4];
     private static final int[][] POW5_INV_SPLIT = new int[291][4];
 
@@ -156,11 +156,12 @@ public final class RyuDouble {
         final long mm = 4 * m2 - 1 - mmShift;
         e2 -= 2;
 
-        BridgeStruct stepStruct = RyuDoubleAlgorithm.step3(e2, mv, mp, mm, even,mmShift);
+        RyuDoubleAlgorithm algo = new RyuDoubleAlgorithm();
+        BridgeStruct stepStruct = algo.step3(e2, mv, mp, mm, even,mmShift);
 
-        stepStruct = RyuDoubleAlgorithm.step4(stepStruct);
+        stepStruct = algo.step4(stepStruct);
 
 
-        return RyuDoubleAlgorithm.step5(stepStruct, sign, result, index, off);
+        return algo.step5(stepStruct, sign, result, index, off);
     }
 }
